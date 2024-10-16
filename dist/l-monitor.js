@@ -1,0 +1,1 @@
+(()=>{"use strict";window.LMonitor={collect:function(){console.log("collect")},upload:function(){console.log("upload")}}})();

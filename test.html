@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>hello</h1>
+  <script>
+    (function () {
+      const script = document.createElement('script')
+      // script.src = './dist/l-monitor.js'
+      script.src = 'http://localhost:3000/l-monitor.js'
+      // 将script 标签插入到body元素下的第一个元素之前
+      document.body.insertBefore(script, document.body.firstChild)
+      script.onload = function () {
+        // script加载完成，创建并派发一个任务。通过监听这个任务，来获取script加载进度
+        const event = new CustomEvent('onMonitorScriptLoad', () => {
+          window.dispatch(event)
+        })
+      }
+    })()
+  </script>
+</body>
+
+</html>
