@@ -5,24 +5,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .module {
+      height: 200px;
+      margin: 50px;
+      background-color: lightblue;
+    }
+  </style>
 </head>
 
 <body>
   <h1>hello</h1>
+  <div class="module" id="module1">模块 1</div>
+  <div class="module" id="module2">模块 2</div>
+  <div class="module" id="module3">模块 3</div>
+  <div class="module" id="module3">模块 3</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+  <div class="module" id="module4">模块 4</div>
+
   <script>
     (function () {
       const script = document.createElement('script')
-      script.src = '../dist/l-monitor.js'
-      // script.src = 'http://localhost:3000/l-monitor.js'
+      // script.src = '../dist/l-monitor.js'
+      script.src = 'http://localhost:3000/l-monitor.js'
       // 将script 标签插入到body元素下的第一个元素之前
       document.body.insertBefore(script, document.body.firstChild)
       script.onload = function () {
         // script加载完成，创建并派发一个任务。通过监听这个任务，来获取script加载进度
-        const event = new CustomEvent('onMonitorScriptLoad', () => {
-          window.dispatch(event)
-        })
+        const event = new CustomEvent('onMonitorScriptLoad')
+        window.dispatchEvent(event)
       }
     })()
+
+
+    window.addEventListener('onMonitorScriptLoad', function (e) {
+      console.log('🚀 脚本加载完成 ')
+      const monitor = window.LMonitor
+      // 设置上报接口地址
+      monitor.userSetApiUrl('http://127.0.0.1:3000/l-monitor-upload')
+
+      // 指定需要曝光元素id
+      monitor.userSetExposure(['module1', 'module2'])
+
+      // 设置上报间隔时间
+      monitor.uploadInterval(3000)
+    })
+
+
   </script>
 </body>
 
