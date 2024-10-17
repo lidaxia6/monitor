@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模块曝光监控</title>
+  <style>
+    .module {
+      height: 200px;
+      margin: 50px;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>模块曝光监控</h1>
+
+  <!-- 模拟几个模块 -->
+  <div class="module" id="module1">模块 1</div>
+  <div class="module" id="module2">模块 2</div>
+  <div class="module" id="module3">模块 3</div>
+
+  <script>
+    // 曝光处理函数
+    function handleIntersection(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 模块曝光时执行的逻辑
+          console.log(`模块 ${entry.target.id} 被曝光`);
+
+          // 如果只需要曝光一次，可以取消观察
+          observer.unobserve(entry.target);
+        }
+      });
+    }
+
+    // 创建 Intersection Observer
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null, // null 表示观察相对于视口的变化
+      threshold: 0.1 // 当 10% 模块进入视口时触发
+    });
+
+    // 选取需要监控的模块
+    const modules = document.querySelectorAll('.module');
+    modules.forEach(module => {
+      observer.observe(module); // 监听每个模块的曝光情况
+    });
+  </script>
+</body>
+
+</html>
