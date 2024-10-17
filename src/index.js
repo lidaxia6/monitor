@@ -1,7 +1,11 @@
 import collect from './collect';
-import upload from './upload';
+import { uploadInterval } from './upload';
+import { userSetApiUrl } from './genApiUrl';
+import { userSetExposure } from './exposure';
 
 window.LMonitor = {
   collect,
-  upload,
+  uploadInterval,
+  userSetApiUrl,
+  userSetExposure,
 };
